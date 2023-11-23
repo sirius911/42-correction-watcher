@@ -94,7 +94,7 @@ if (not previous_team_id is None):
 if (not previous_token is None):
     token_placeholder = f" (default {previous_token})"
 if (not previous_api is None):
-    api_placeholder = f" (default {previous_api})"
+    api_placeholder = f" (default {previous_api} or Ńone to del API)"
 if (not previous_forktime is None):
     forktime_placeholder_start = f" (default {previous_forktime[0].strftime('%H:%M')})"
     forktime_placeholder_end = f" (default {previous_forktime[1].strftime('%H:%M')})"
@@ -117,11 +117,12 @@ if (token == ""):
 api = input(f"API callback (optional){api_placeholder}: ")
 if (api == ""):
     api = previous_api
-
+elif api == "None":
+    api = None
 try:
-    days_to_watch = int(input("Number of days you want to watch (default 3): "))
+    days_to_watch = int(input("Number of days you want to watch (default 1): "))
 except:
-    days_to_watch = 3
+    days_to_watch = 1
 
 try:
     days_to_begin = int(input("Number of days to start (default 0): "))
