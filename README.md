@@ -2,6 +2,8 @@
 
 A Python script that will send you a desktop notification when a correction slot is found.
 
+From [t0mm4rx](https://github.com/t0mm4rx/42-correction-watcher)
+
 ## Usage
 
 Only tested on macOS.
