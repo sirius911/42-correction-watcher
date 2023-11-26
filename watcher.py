@@ -24,7 +24,7 @@ def get_params():
             url, team_id, token, api, forktime = pickle.load(file)
             return (url, team_id, token, api, forktime)
     except:
-        return (None, None, None, None)
+        return (None, None, None, None, None)
 
 def save_params(url, team_id, token, api, forktime):
     """Save params on the disk."""
@@ -42,6 +42,10 @@ def notify(title, message):
         notify2.init("42 School Correction")
         n = notify2.Notification(title, message)
         n.show()
+
+def get_url_project(project_url, team_id, start, end):
+    "return the url of project"
+    return (f"https://projects.intra.42.fr/projects/{project_url}/slots?team_id={team_id}&start={start}&end={end}")
 
 def get_slots(project_url, team_id, days_to_begin, days_to_watch):
     """Send a request to 42 intra."""
@@ -147,7 +151,7 @@ save_params(project_url, team_id, token, api, forktime)
 
 notify("Running", "You'll be notified when an open slot is found.")
 if api:
-    call_api("Starting 42 search slot correction for [" + project_url + "]")
+    call_api(f"Starting 42 search slot correction for [{project_url}] : {get_url_project(project_url, team_id, days_to_begin, days_to_watch)}")
 while True:
     print("Checking...")
     slots = get_slots(project_url, team_id, days_to_begin, days_to_watch)
